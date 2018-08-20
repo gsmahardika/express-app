@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session')
 const app = express()
 
 //--- Components collection
+const config = require('../config/config')
 const site = require('../components/site')
 const test = require('../components/test')
 //--- Components collection
@@ -21,15 +22,15 @@ app.use(compression())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieSession({
-    name: 'expr_session',
-    keys: ['expr_secret'],
-    cookie: {
-        secure: false,
-        httpOnly: true,
-        domain: null,
-        path: '/',
-        expires: new Date(Date.now() + 60 * 60 * 1000) // 1 Hour
-    }
+  name: config.session.name,
+  keys: config.session.secret,
+  cookie: {
+    secure: config.session.secure,
+    httpOnly: config.session.httpOnly,
+    domain: config.session.domain,
+    path: config.session.path,
+    expires: config.session.expires
+  }
 }))
 //--- App middlewares
 

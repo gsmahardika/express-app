@@ -1,9 +1,10 @@
 const mysql = require('mysql')
+const config = require('../config/config')
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: '',
-    database: ''
+  host: config.db.host,
+  user: config.db.user,
+  password: config.db.password,
+  database: config.db.database
 })
 
 connection.connect()

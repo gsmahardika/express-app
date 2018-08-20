@@ -1,0 +1,19 @@
+const config = {
+  db: {
+    host: '127.0.0.1',
+    user: 'root',
+    password: '',
+    database: ''
+  },
+  session: {
+    name: 'expr_session',
+    secret: ['expr_secret'],
+    secure: false,
+    httpOnly: true,
+    domain: null,
+    path: '/',
+    expires: new Date(Date.now() + 60 * 60 * 1000) // 1 Hour
+  }
+}
+
+module.exports = config
