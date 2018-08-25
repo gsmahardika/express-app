@@ -6,9 +6,9 @@ const cookieSession = require('cookie-session')
 const app = express()
 
 //--- Components collection
-const config = require('../config/config')
-const site = require('../components/site')
-const test = require('../components/test')
+const config = require('./config/config')
+const site = require('./components/site')
+const test = require('./components/test')
 //--- Components collection
 
 //--- App configuration
