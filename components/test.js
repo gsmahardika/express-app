@@ -31,8 +31,50 @@ let returnResponse = (res, initialData, extendedData) => {
   })
 }
 
+const getAdditionalData = async (res) => {
+  let testQuery = new Promise((resolve, reject) => {
+    mysql.query('SELECT * FROM test', (err, rows) => {
+      if (err) {
+        throw err
+      }
+
+      console.log(2)
+
+      resolve(rows)
+    })
+  })
+
+  let categoryQuery = new Promise((resolve, reject) => {
+    mysql.query('SELECT * FROM category', (err, rows) => {
+      if (err) {
+        throw err
+      }
+
+      console.log(4)
+
+      resolve(rows)
+    })
+  })
+
+  console.log(1)
+  let test = await testQuery
+  console.log(3)
+  let category = await categoryQuery
+
+  res.json({
+    status: true,
+    message: 'Hello world from /test/data!',
+    test: test,
+    category: category
+  })
+}
+
 router.get('/user', (req, res, next) => {
   getInitialData(res)
+})
+
+router.get('/data', (req, res, next) => {
+  getAdditionalData(res)
 })
 
 module.exports = router
